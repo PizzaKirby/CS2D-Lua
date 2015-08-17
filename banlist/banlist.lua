@@ -43,6 +43,7 @@ function bl.loghook(line)
 		elseif(line:match("#?#End of banlist#?#")) then
 			bl.tbanlist.expected =  nil
 			local id = line:match("#?#End of banlist#?#(%d*)")
+			
 			parse('cmsg "©'..bl.colors.orange..'Total bancount : '..bl.tbanlist.ctotal..'" '..id)
 			parse('cmsg "©'..bl.colors.orange..'Amount of '..bl.tbanlist.btype:sub(2)..' bans : '..bl.tbanlist.ctype..'" '..id)
 			for _,v in ipairs(bl.tbanlist.list) do
