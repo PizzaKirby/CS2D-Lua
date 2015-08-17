@@ -9,8 +9,10 @@ bl.colors =	{
 --[[
 ======================================================================
 args : 	id     = id of requesting player
+		Integer
+
        	bType  = type of ban 
-			String : IP , USGN , NAME ( case sensitive )
+		String : IP , USGN , NAME ( case sensitive )
 ======================================================================
 ]]
 
