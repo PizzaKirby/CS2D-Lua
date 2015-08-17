@@ -1,3 +1,3 @@
 # CS2D-Lua
 
-Mostly proofs of concepts / useful sutff.
+Mostly proofs of concepts / useful / hacky stuff.
