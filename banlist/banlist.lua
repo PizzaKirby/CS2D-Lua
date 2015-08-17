@@ -44,7 +44,7 @@ function bl.loghook(line)
 			local id = line:match("#?#End of banlist#?#(%d*)")
 
 			--[[
-				add your own output between here
+				add your own output here
 				#start
 			]]
 
