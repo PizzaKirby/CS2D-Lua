@@ -13,6 +13,7 @@ args : 	id     = id of requesting player
 			valid : IP , USGN , NAME ( case sensitive )
 ==========================================================
 ]]
+
 function bl.banlist(id,bType)
 	bl.tbanlist.expected = true
 	bl.tbanlist.ctotal = 0
