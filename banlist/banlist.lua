@@ -2,9 +2,9 @@ if not bl then bl = {} end
 
 bl.tbanlist = {}
 
-bl.colors = {
+bl.colors =	{
 				orange = '255150000',
-    		}
+			}
 
 --[[
 ==========================================================
@@ -57,7 +57,7 @@ function bl.loghook(line)
 			--[[
 				#end
 			]]
-			
+
 			bl.tbanlist = {}
 		end
 	end
