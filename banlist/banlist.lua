@@ -18,10 +18,10 @@ args : 	id     = id of requesting player
 
 function bl.banlist(id,bType)
 	bl.tbanlist.expected = true
-	bl.tbanlist.ctotal = 0
-	bl.tbanlist.ctype = 0
-	bl.tbanlist.btype = "* "..bType
-	bl.tbanlist.list = {}
+	bl.tbanlist.ctotal = 0				--total bans count
+	bl.tbanlist.ctype = 0				--specific ban count
+	bl.tbanlist.btype = "* "..btype 	--bantype
+	bl.tbanlist.list = {}               --list of bans matching the bantype
 	msg2(id,"Look at the console for output!")
 	parse("banlist")
 	print("#?#End of banlist#?#"..id)
@@ -35,7 +35,7 @@ function bl.loghook(line)
 			end
 			table.insert(bl.tbanlist.list,line)
 			bl.tbanlist.ctype = bl.tbanlist.ctype + 1
-		elseif(line:find("bans total:")) then
+		elseif(line:match("bans total:")) then
 			if(bl.tbanlist.ctotal == 0) then
 				local d = line:match("bans total: (%d*)") or ""
 				if(d ~= "") then
