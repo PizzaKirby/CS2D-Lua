@@ -37,6 +37,7 @@ function pl.table_count(t, item)
     return ret
 end
 
+--16 colors max
 function pl.playerlist(id)
 
 	msg2(id,"See console for output!")
