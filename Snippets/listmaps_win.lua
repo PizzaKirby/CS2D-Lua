@@ -1,3 +1,9 @@
+--[[
+	@param	String 	: directory maps are searched in
+	@param	String 	: pattern to match 
+	@ret 	Table	: matching maps
+]]
+
 function ku.getMapsInDir(dir,pat) 
     local i, t, popen = 0, {}, io.popen
     for map in popen('dir "'..dir..'" /B *.map'):lines() do

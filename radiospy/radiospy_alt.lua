@@ -13,7 +13,7 @@ rs.colors = {
 			}
 
 function rs.radio(src,message)
-	--fetch every id you wanna send it to
+	--fetch every id you wanna send it to and store it in 'ids'
     ids = {1}
 	--
 	for id,_ in ipairs(ids) do
