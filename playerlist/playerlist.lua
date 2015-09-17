@@ -24,7 +24,7 @@ function pl.table_count(t, item)
     return ret
 end
 
-function ku.playerlist(id,args)
+function pl.playerlist(id)
 	local tPlayers = player(0,"table")
 	local tIP = {}
 	local tIPtemp = {}
@@ -37,24 +37,24 @@ function ku.playerlist(id,args)
 		tIPtemp[p] = ip
 	end
 
-	for tid,ip in ipairs(tIPtemp) do
+	for iid,ip in ipairs(tIPtemp) do
 		local matches = ku.table_count(tIPtemp,ip)
 
 		if #matches >= 2 then
-			table.foreach(matches,	function(k,v) 
-										tRes[v] = iMCount
-										tIPtemp[v] = nil 
-									end)
+			for k,v in ipairs(matches) do
+				tRes[v] = iMCount
+				tIPtemp[v] = nil 
+			end
 			iMCount = iMCount + 1
 		end
 	end
 
-	for tid,val in ipairs(tPlayers) do
+	for iid,val in ipairs(tPlayers) do
 		
-		if(tRes[tid]) then
-			parse('cmsg "\169'..ku.colors.pl[tRes[tid]]..'#'..tid.."     "..player(tid,"name")..'     '..tIP[tid]..'     '..player(tid,"usgn")..' '..id..'"')
+		if(tRes[iid]) then
+			parse('cmsg "\169'..ku.colors.pl[tRes[iid]]..'#'..iid.."     "..player(iid,"name")..'     '..tIP[iid]..'     '..player(iid,"usgn")..'" '..id)
 		else
-			parse('cmsg "\169'..ku.colors.white..'#'..tid.."     "..player(tid,"name")..'     '..tIP[tid]..'     '..player(tid,"usgn")..' '..id..'"')
+			parse('cmsg "\169'..ku.colors.white..'#'..iid.."     "..player(iid,"name")..'     '..tIP[iid]..'     '..player(iid,"usgn")..'" '..id)
 		end
 	end
 end
