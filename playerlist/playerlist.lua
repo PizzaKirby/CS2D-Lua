@@ -2,28 +2,15 @@ if not pl then pl = {} end
 
 pl.colors = {
 
-			default = '255255255',
-			standard = '255220000',
-
-			err = '255000050',
-			succ = '000255050',
-			std = '255255255',
-			help = '111255111',
-			chatspy = '050200100',
-			info = '050100150',
-
-			red = '255000000',
-			green = '000255000',
-			blue = '000000255',
-			orange = '255150000',
 			white = '255255255',
-			black = '000000000',
-
-			teams = {
-						[0] = '255220000',
-						[1] = '255025000',
-						[2] = '050150255',
-						[3] = '050150255' 
+			pl = 	{
+						[1] = '222019019',
+						[2] = '037059220',
+						[3] = '017017128',
+						[4] = '225033182',
+						[5] = '191015015',
+						[6] = '083019215',
+						[7] = '179220037'
 					}
 
 			}
@@ -37,36 +24,37 @@ function pl.table_count(t, item)
     return ret
 end
 
---16 colors max
-function pl.playerlist(id)
+function ku.playerlist(id,args)
+	local tPlayers = player(0,"table")
+	local tIP = {}
+	local tIPtemp = {}
+	local tRes = {}
+	local iMCount = 1
 
-	msg2(id,"See console for output!")
-
-	local plt = player(0,"table")
-	local ipt = {}
-	local ips = {}
-
-	for _,p in ipairs(plt) do
+	for _,p in ipairs(tPlayers) do
 		local ip = player(p,"ip")
-		ipt[p] = ip
+		tIP[p] = ip
+		tIPtemp[p] = ip
 	end
 
-	for ind,i in ipairs(ipt) do
-		local matches = pl.table_count(ipt,i)
-		if(#matches >= 2) then 
-			for _,id in ipairs(matches) do
-				ips[id] = '©'..pl.colors.red..i..'©'..pl.colors.white
-				ipt[id] = nil
-			end
-		else
-			ips[ind] = i
+	for tid,ip in ipairs(tIPtemp) do
+		local matches = ku.table_count(tIPtemp,ip)
+
+		if #matches >= 2 then
+			table.foreach(matches,	function(k,v) 
+										tRes[v] = iMCount
+										tIPtemp[v] = nil 
+									end)
+			iMCount = iMCount + 1
 		end
 	end
 
-	for _,p in ipairs(plt) do
-		local str = 'cmsg "©255255255#'..p..' -> Name : '..player(p,"name")
-		str = str..string.format("%45s","IP : "..ips[p])
-		str = str..string.format("%30s","USGN : "..player(p,'usgn')..'" '..id)
-		parse(str)
+	for tid,val in ipairs(tPlayers) do
+		
+		if(tRes[tid]) then
+			parse('cmsg "\169'..ku.colors.pl[tRes[tid]]..'#'..tid.."     "..player(tid,"name")..'     '..tIP[tid]..'     '..player(tid,"usgn")..' '..id..'"')
+		else
+			parse('cmsg "\169'..ku.colors.white..'#'..tid.."     "..player(tid,"name")..'     '..tIP[tid]..'     '..player(tid,"usgn")..' '..id..'"')
+		end
 	end
 end
